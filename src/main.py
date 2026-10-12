@@ -1,6 +1,8 @@
 from FastAPI import fastapi
 
-Books = [
+app = fastapi()
+
+Data = [
 {
         "id": 1,
         "title": "The Hobbit",
@@ -32,3 +34,15 @@ Books = [
         "year": 1605
     }
 ]
+
+@app.get("/books")
+def get_books():
+    return Data
+
+@app.get("/books/{book_id :int}")
+def get_the_books(id):
+    for book in Data:
+        if Data[id] == book_id :
+           return book
+    else:
+        return {"message": "Book Not Found"}
