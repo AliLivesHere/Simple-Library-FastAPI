@@ -46,3 +46,15 @@ def get_the_books(id):
            return book
     else:
         return {"message": "Book Not Found"}
+
+@app.post("/books")
+def add_books():
+    new_book = {
+        "id": len(Data) + 1 ,
+        "title": book.title ,
+        "author": book.author ,
+        "year": book.year
+    }
+    
+    Data.append(new_book)
+    return new_book
