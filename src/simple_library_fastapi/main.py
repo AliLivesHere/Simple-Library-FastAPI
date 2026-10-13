@@ -1,6 +1,6 @@
-from FastAPI import fastapi
+from fastapi import FastAPI
 
-app = fastapi()
+app = FastAPI()
 
 Data = [
 {
@@ -42,13 +42,13 @@ def get_books():
 @app.get("/books/{book_id}")
 def get_the_books(book_id:int):
     for book in Data:
-        if Data[id] == book_id :
+        if book[id] == book_id :
            return book
     else:
         return {"message": "Book Not Found"}
 
 @app.post("/books")
-def add_books():
+def add_books(book:dict):
     new_book = {
         "id": len(Data) + 1 ,
         "title": book.title ,
@@ -60,7 +60,7 @@ def add_books():
     return new_book
 
 @app.put("/books/{book_id}")
-def change_book_detail(book_id:int , updated_book:Data):
+def change_book_detail(book_id:int , updated_book:dict):
     for book in Data:
         if Data["id"] == book_id:
             Data["title"] = updated_Data.title
