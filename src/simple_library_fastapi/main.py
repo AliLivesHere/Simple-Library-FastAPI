@@ -39,8 +39,8 @@ Data = [
 def get_books():
     return Data
 
-@app.get("/books/{book_id :int}")
-def get_the_books(id):
+@app.get("/books/{book_id}")
+def get_the_books(book_id:int):
     for book in Data:
         if Data[id] == book_id :
            return book
@@ -58,3 +58,15 @@ def add_books():
     
     Data.append(new_book)
     return new_book
+
+@app.put("/books/{book_id}")
+def change_book_detail(book_id:int , updated_book:Data):
+    for book in Data:
+        if Data["id"] == book_id:
+            Data["title"] = updated_Data.title
+            Data["author"] = updated_Data.author
+            Data["year"] = updated_Data.year
+            return book
+        else:
+            return {"message" : "Book not Found"}
+    
