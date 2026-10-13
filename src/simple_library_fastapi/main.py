@@ -69,4 +69,21 @@ def change_book_detail(book_id:int , updated_book:Data):
             return book
         else:
             return {"message" : "Book not Found"}
-    
+        
+        
+@app.delete("/books/{book_id}")
+def delete_book(book_id: int):
+
+    for book in Data:
+
+        if Data["id"] == book_id:
+
+            Data.remove(book)
+
+            return {
+                "message": "Book deleted successfully"
+            }
+
+    return {
+        "message": "Book not found"
+    }
