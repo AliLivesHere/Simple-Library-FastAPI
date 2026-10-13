@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-Data = [
+books = [
 {
         "id": 1,
         "title": "The Hobbit",
@@ -37,12 +37,14 @@ Data = [
 
 @app.get("/books")
 def get_books():
-    return Data
+    return books
+
+
 
 @app.get("/books/{book_id}")
 def get_the_books(book_id:int):
-    for book in Data:
-        if book[id] == book_id :
+    for book in books:
+        if book["id"] == book_id :
            return book
     else:
         return {"message": "Book Not Found"}
@@ -50,40 +52,39 @@ def get_the_books(book_id:int):
 @app.post("/books")
 def add_books(book:dict):
     new_book = {
-        "id": len(Data) + 1 ,
-        "title": book.title ,
-        "author": book.author ,
-        "year": book.year
+        "id": len(books) + 1 ,
+        "title": book["title"] ,
+        "author": book["author"] ,
+        "year": book["year"]
     }
-    
-    Data.append(new_book)
+    books.append(new_book)
     return new_book
+
+
+
 
 @app.put("/books/{book_id}")
 def change_book_detail(book_id:int , updated_book:dict):
-    for book in Data:
-        if Data["id"] == book_id:
-            Data["title"] = updated_Data.title
-            Data["author"] = updated_Data.author
-            Data["year"] = updated_Data.year
+    for book in books:
+        if book["id"] == book_id:
+            book["title"] = updated_book["title"]
+            book["author"] = updated_book["author"]
+            book["year"] = updated_book["year"]
             return book
-        else:
-            return {"message" : "Book not Found"}
+    else:
+        return {"message" : "Book not Found"}
         
         
+
+
 @app.delete("/books/{book_id}")
 def delete_book(book_id: int):
-
-    for book in Data:
-
-        if Data["id"] == book_id:
-
-            Data.remove(book)
-
+    for book in books:
+        if book["id"] == book_id:
+            books.remove(book)
             return {
                 "message": "Book deleted successfully"
             }
-
     return {
         "message": "Book not found"
     }
